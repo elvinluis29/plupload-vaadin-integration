@@ -5,7 +5,7 @@
 	<groupId>com.ez.plupload</groupId>
 	<artifactId>plupload-vaadin-extension</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>plupload-vaadin-extension</name>
 
 	<prerequisites>
