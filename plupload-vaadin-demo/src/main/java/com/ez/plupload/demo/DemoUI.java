@@ -61,6 +61,7 @@ public class DemoUI extends UI
         Plupload ex = new Plupload(upload);
         
         ex.addDropZone(dropZone)
+        	//.setChunkSize("1mb")
         	.setImageResize(resize)
         	
         	.addFilesAddedListener(files -> {
