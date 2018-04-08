@@ -51,7 +51,7 @@ public class DefaultFileDataHandler implements FileDataHandler {
 		File file = getFile(fileId);
 
 		try (FileOutputStream o = new FileOutputStream(file, file.exists())) {
-			write(is, o, 1);
+			write(is, o);
 		}
 	}
 
