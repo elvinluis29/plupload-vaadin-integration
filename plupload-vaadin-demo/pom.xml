@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ez.plupload</groupId>
-	<artifactId>vaadin-plupload-demo</artifactId>
+	<artifactId>plupload-vaadin-demo</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>vaadin-plupload-demo</name>
+	<name>plupload-vaadin-demo</name>
 
 	<prerequisites>
 		<maven>3</maven>
@@ -23,19 +23,19 @@
 
     <organization>
 		<name>EZ</name>
-		<url>https://github.com/elvinluis29/vaadin-plupload-integration</url>
+		<url>https://github.com/elvinluis29/plupload-vaadin-integration</url>
 	</organization>
 
 	<scm>
-		<url>https://github.com/elvinluis29/vaadin-plupload-integration</url>
-		<connection>scm:git:git://github.com:elvinluis29/vaadin-plupload-integration.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:elvinluis29/vaadin-plupload-integration.git</developerConnection>
-		<tag>Vaadin Plupload Integration</tag>
+		<url>https://github.com/elvinluis29/plupload-vaadin-integration</url>
+		<connection>scm:git:git://github.com:elvinluis29/plupload-vaadin-integration.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:elvinluis29/plupload-vaadin-integration.git</developerConnection>
+		<tag>Plupload Vaadin Integration</tag>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/elvinluis29/vaadin-plupload-integration/issues</url>
+		<url>https://github.com/elvinluis29/plupload-vaadin-integration/issues</url>
 	</issueManagement>
 
 	<licenses>
@@ -68,7 +68,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.ez.plupload</groupId>
-			<artifactId>vaadin-plupload-extension</artifactId>
+			<artifactId>plupload-vaadin-extension</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

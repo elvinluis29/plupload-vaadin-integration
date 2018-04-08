@@ -3,18 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ez.plupload</groupId>
-	<artifactId>vaadin-plupload-integration</artifactId>
+	<artifactId>plupload-vaadin-integration</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>vaadin-plupload-integration</name>
+	<name>plupload-vaadin-integration</name>
 
 	<prerequisites>
 		<maven>3</maven>
 	</prerequisites>
 
 	<modules>
-		<module>vaadin-plupload-demo</module>
-		<module>vaadin-plupload-extension</module>
+		<module>plupload-vaadin-demo</module>
+		<module>plupload-vaadin-extension</module>
 	</modules>
 
 	<profiles>
