@@ -8,6 +8,7 @@ enum Option {
     CHUNK_SIZE("chunk_size"),
     MAX_RETRIES("max_retries"),
     MAX_FILE_SIZE("max_file_size"),
+    PREVENT_EMPTY("prevent_empty"),
     MULTI_SELECTION("multi_selection"),
     PREVENT_DUPLICATES("prevent_duplicates");
 

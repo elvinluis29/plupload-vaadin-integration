@@ -81,6 +81,7 @@ public class Plupload extends AbstractJavaScriptExtension {
 		filters = Json.createObject();
 		settings.put("filters", filters);
 		
+		filters.put("prevent_empty", false);
 		filters.put("max_file_size", "1024mb");
 		filters.put("prevent_duplicates", false);
 				
@@ -571,6 +572,20 @@ public class Plupload extends AbstractJavaScriptExtension {
     
     public boolean isPreventDuplicates() {
     	return filters.getBoolean(Option.PREVENT_DUPLICATES.toString());
+    }
+    
+    public Plupload setPreventEmpty(boolean prevent) {
+    	filters.put(Option.PREVENT_EMPTY.toString(), prevent);
+    	
+    	if(initiated) {
+    		setOption(Option.FILTERS, filters);
+    	}
+    	
+    	return this;
+    }
+    
+    public boolean isPreventEmpty() {
+    	return filters.getBoolean(Option.PREVENT_EMPTY.toString());
     }
     
     public Plupload setImageResize(ImageResize resize) {
