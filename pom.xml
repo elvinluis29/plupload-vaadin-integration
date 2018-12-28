@@ -5,7 +5,7 @@
 	<groupId>com.ez.plupload</groupId>
 	<artifactId>plupload-vaadin-integration</artifactId>
 	<packaging>pom</packaging>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3</version>
 	<name>plupload-vaadin-integration</name>
 
 	<prerequisites>
@@ -24,7 +24,7 @@
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
-			
+
 			<repositories>
 				<repository>
 					<id>vaadin-prereleases</id>
