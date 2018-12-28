@@ -10,19 +10,19 @@ public class DefaultFileDataHandler implements FileDataHandler {
 
 	private int bufferSize;
 	private File uploadPath;
-	
+
 	public DefaultFileDataHandler() {
 		bufferSize = 1024;
-		
+
 		String path = System.getProperty("java.io.tmpdir");
-		
+
 		uploadPath = new File(path, "plupload");
-		
+
 		if(!uploadPath.exists()) {
 			uploadPath.mkdirs();
 		}
 	}
-	
+
 	private void sleep(int milli) {
 		try {
 			Thread.sleep(milli);
@@ -41,13 +41,13 @@ public class DefaultFileDataHandler implements FileDataHandler {
 			output.write(buffer, 0, n);
 		}
 	}
-	
+
 	protected void write(InputStream input, OutputStream output) throws IOException {
 		write(input, output, 0);
 	}
-	
+
 	@Override
-	public void handleDataChunk(String fileId, InputStream is) throws IOException {
+	public void handleDataChunk(String fileId, String filename, InputStream is) throws IOException {
 		File file = getFile(fileId);
 
 		try (FileOutputStream o = new FileOutputStream(file, file.exists())) {
@@ -70,7 +70,7 @@ public class DefaultFileDataHandler implements FileDataHandler {
 	public void setBufferSize(int bufferSize) {
 		this.bufferSize = bufferSize;
 	}
-	
+
 	public File getFile(String id) {
 		return new File(uploadPath, String.format("file%s", id.hashCode()));
 	}

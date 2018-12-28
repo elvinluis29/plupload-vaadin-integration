@@ -34,13 +34,13 @@ public class PluploadRequestHandler implements RequestHandler {
 
 		return receiver;
 	}
-	
+
 	private FileDataHandler fileDataHanler;
-	
+
 	public PluploadRequestHandler() {
 		fileDataHanler = new DefaultFileDataHandler();
 	}
-	
+
 	@Override
 	public boolean handleRequest(VaadinSession session, VaadinRequest request, VaadinResponse response)
 			throws IOException {
@@ -69,7 +69,7 @@ public class PluploadRequestHandler implements RequestHandler {
 						if (stream.isFormField()) {
 							fields.put(stream.getFieldName(), Streams.asString(stream.openStream()));
 						} else if(fileDataHanler != null){
-							fileDataHanler.handleDataChunk(fields.get("fileId"), stream.openStream());
+							fileDataHanler.handleDataChunk(fields.get("fileId"), fields.get("name"), stream.openStream());
 						}
 					}
 
