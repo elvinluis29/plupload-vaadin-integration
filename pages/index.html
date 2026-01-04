@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Watch Schwab - OAuth Callback</title>
+      <style>
+          * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+          }
+
+          body {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              min-height: 100vh;
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              padding: 20px;
+          }
+
+          .container {
+              text-align: center;
+              background: white;
+              padding: 40px;
+              border-radius: 20px;
+              box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+              max-width: 400px;
+              width: 100%;
+          }
+
+          .spinner {
+              border: 4px solid #f3f3f3;
+              border-top: 4px solid #667eea;
+              border-radius: 50%;
+              width: 50px;
+              height: 50px;
+              animation: spin 1s linear infinite;
+              margin: 0 auto 24px;
+          }
+
+          @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+          }
+
+          h1 {
+              color: #333;
+              font-size: 24px;
+              margin-bottom: 16px;
+          }
+
+          p {
+              color: #666;
+              font-size: 16px;
+              line-height: 1.5;
+          }
+
+          .success {
+              color: #4CAF50;
+              font-size: 60px;
+              margin-bottom: 20px;
+          }
+
+          .error {
+              color: #f44336;
+              font-size: 60px;
+              margin-bottom: 20px;
+          }
+
+          .error-details {
+              background: #ffebee;
+              padding: 16px;
+              border-radius: 8px;
+              margin-top: 16px;
+              color: #c62828;
+              font-size: 14px;
+              text-align: left;
+          }
+
+          .btn {
+              display: inline-block;
+              margin-top: 20px;
+              padding: 12px 24px;
+              background: #667eea;
+              color: white;
+              text-decoration: none;
+              border-radius: 8px;
+              font-weight: 500;
+          }
+
+          .btn:hover {
+              background: #5568d3;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="container">
+          <div class="spinner"></div>
+          <h1>Redirecting to Watch Schwab...</h1>
+          <p>Please wait while we redirect you back to the app.</p>
+          <p style="font-size: 14px; color: #999; margin-top: 16px;">
+              If the app doesn't open automatically, please return to the app manually.
+          </p>
+      </div>
+
+      <script>
+          (function() {
+              // Extract parameters from URL
+              const urlParams = new URLSearchParams(window.location.search);
+              const code = urlParams.get('code');
+              const error = urlParams.get('error');
+              const errorDescription = urlParams.get('error_description');
+
+              const container = document.querySelector('.container');
+
+              if (code) {
+                  // Success - redirect to app
+                  console.log('Authorization code received:', code.substring(0, 10) + '...');
+
+                  // Build the custom URI scheme URL
+                  const appUrl = `watchschwab://oauth?code=${encodeURIComponent(code)}`;
+
+                  // Show success message
+                  container.innerHTML = `
+                      <div class="success">✓</div>
+                      <h1>Login Successful!</h1>
+                      <p>Redirecting to Watch Schwab app...</p>
+                  `;
+
+                  // Attempt to open the app
+                  window.location.href = appUrl;
+
+                  // Fallback after 2 seconds
+                  setTimeout(() => {
+                      container.innerHTML += `
+                          <p style="margin-top: 20px;">
+                              App didn't open?
+                              <a href="${appUrl}" class="btn">Click here to open Watch Schwab</a>
+                          </p>
+                      `;
+                  }, 2000);
+
+              } else if (error) {
+                  // Error from Schwab
+                  console.error('OAuth error:', error, errorDescription);
+
+                  container.innerHTML = `
+                      <div class="error">✗</div>
+                      <h1>Login Failed</h1>
+                      <p>There was a problem logging in to Schwab.</p>
+                      <div class="error-details">
+                          <strong>Error:</strong> ${error}<br>
+                          ${errorDescription ? `<strong>Details:</strong> ${errorDescription}` : ''}
+                      </div>
+                      <p style="margin-top: 20px;">Please close this window and try again.</p>
+                  `;
+
+              } else {
+                  // No code or error - invalid callback
+                  console.error('Invalid callback - no code or error parameter');
+
+                  container.innerHTML = `
+                      <div class="error">⚠</div>
+                      <h1>Invalid Callback</h1>
+                      <p>No authorization code was received from Schwab.</p>
+                      <p style="margin-top: 20px;">Please close this window and try again.</p>
+                  `;
+              }
+          })();
+      </script>
+  </body>
+  </html>
